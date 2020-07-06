@@ -1,0 +1,109 @@
+<?xml version='1.0' encoding='utf-8'?>
+<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    id="cordova-plugin-aliyun-push"
+    version="0.1.6">
+    <name>PushPlugin</name>
+
+    <description>AliPush Cordova plugin</description>
+    <author>liuxiaoy</author>
+    <keywords>aliyun, push</keywords>
+    <license>Apache 2.0</license>
+
+    <engines>
+        <engine name="cordova-ios" version=">=3.8" />
+        <engine name="cordova-android" version=">=7" />
+    </engines>
+
+    <js-module name="AliPushPlugin" src="www/AliPushPlugin.js">
+        <clobbers target="AliPushPlugin" />
+    </js-module>
+    <preference name="MIID" default=" " />
+    <preference name="MIKEY" default=" " />
+    <preference name="GCMSENDID" default=" "/>
+    <preference name="GCMAPPID" default=" "/>
+    <preference name="APP_KEY" />
+    <preference name="APP_SECRET" />
+    <platform name="ios">
+        <dependency id="cordova-plugin-add-swift-support"/>
+        <config-file parent="/*" target="config.xml">
+            <feature name="AliPushPlugin">
+                <param name="ios-package" value="AliPushPlugin" />
+            </feature>
+            <preference name="AliPush_APP_KEY" value="$APP_KEY"/>
+            <preference name="AliPush_APP_SECRET" value="$APP_SECRET"/>
+        </config-file>
+        <header-file src="src/ios/AliPush-Bridging-Header.h"/>
+        <source-file src="src/ios/AliPushPlugin.swift"/>
+        <source-file src="src/ios/AppDelegate+AliPush.swift"/>
+        <!-- 依赖 -->
+        <framework src="src/ios/libs/AlicloudUtils.framework" custom="true" />
+        <framework src="src/ios/libs/CloudPushSDK.framework" custom="true" />
+        <framework src="src/ios/libs/UTDID.framework" custom="true" />
+        <framework src="src/ios/libs/UTMini.framework" custom="true" />
+        <framework src="libz.tbd" framework="true"/>
+        <framework src="libresolv.tbd" />
+        <framework src="CoreTelephony.framework" />
+        <framework src="SystemConfiguration.framework" />
+        <framework src="UserNotifications.framework" />
+        <framework src="libsqlite3.tbd" />
+    </platform>
+    <platform name="android">
+        <config-file parent="/*" target="res/xml/config.xml">
+            <feature name="AliPushPlugin">
+                <param name="android-package" value="com.blanktrack.alipush.AliPushPlugin" />
+            </feature>
+            <preference name="MIID" value="\$MIID"/>
+            <preference name="MIKEY" value="\$MIKEY"/>
+            <preference name="GCMSENDID" value="\$GCMSENDID"/>
+            <preference name="GCMAPPID" value="$GCMAPPID"/>
+        </config-file>
+
+        <hook type="after_plugin_install" src="scripts/afterPluginInstall.js"/>
+        <hook type="after_plugin_install" src="scripts/handlerPushActivity.js"/>
+
+        <hook type="before_plugin_uninstall" src="scripts/handlerPushActivity.js"/>
+        <hook type="before_plugin_rm" src="scripts/beforePluginRemove.js"/>
+
+        <config-file target="AndroidManifest.xml" parent="/manifest/application">
+            <meta-data android:name="com.alibaba.app.appkey" android:value="$APP_KEY" />
+            <meta-data android:name="com.alibaba.app.appsecret" android:value="$APP_SECRET" />
+            <receiver android:name="com.blanktrack.alipush.MyMessageReceiver" android:exported="false">
+                <!-- 为保证receiver安全，建议设置不可导出，如需对其他应用开放可通过android：permission进行限制 -->
+                <intent-filter>
+                    <action android:name="com.alibaba.push2.action.NOTIFICATION_OPENED" />
+                </intent-filter>
+                <intent-filter>
+                    <action android:name="com.alibaba.push2.action.NOTIFICATION_REMOVED" />
+                </intent-filter>
+                <intent-filter>
+                    <action android:name="com.alibaba.sdk.android.push.RECEIVE" />
+                </intent-filter>
+            </receiver>
+            <activity android:exported="true" android:name=".alipush.AliPushActivity">
+            </activity>
+            <receiver android:name="com.google.firebase.iid.FirebaseInstanceIdReceiver" android:exported="true" android:permission="com.google.android.c2dm.permission.SEND">
+                <intent-filter>
+                    <action android:name="com.google.android.c2dm.intent.RECEIVE" />
+                    <action android:name="com.google.android.c2dm.intent.REGISTRATION" />
+                    <category android:name="com.taobao.taobao" />
+                </intent-filter>
+            </receiver>
+            <receiver android:name="com.google.firebase.iid.FirebaseInstanceIdInternalReceiver" android:exported="false" />
+            <service android:name="com.alibaba.sdk.android.push.AgooFirebaseInstanceIDService" android:exported="true">
+                <intent-filter android:priority="-500">
+                    <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
+                </intent-filter>
+            </service>
+            <service android:name="com.alibaba.sdk.android.push.AgooFirebaseMessagingService" android:exported="true">
+                <intent-filter android:priority="-500">
+                    <action android:name="com.google.firebase.MESSAGING_EVENT" />
+                </intent-filter>
+            </service>
+        </config-file>
+        <framework src="push.gradle" custom="true" type="gradleReference" />
+        <source-file src="src/android/com/blanktrack/alipush/AliPushPlugin.java" target-dir="src/com/blanktrack/alipush/" />
+        <source-file src="src/android/com/blanktrack/alipush/MyMessageReceiver.java" target-dir="src/com/blanktrack/alipush/" />
+        <source-file src="src/android/com/blanktrack/alipush/MainApplication.java" target-dir="src/com/blanktrack/alipush/" />
+    </platform>
+</plugin>
