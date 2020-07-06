@@ -1,6 +1,6 @@
 {
-  "name": "cordova-plugin-aliyun-push",
-  "version": "0.1.6",
+  "name": "cordova-plugin-aliyun-push-ex",
+  "version": "0.0.1",
   "description": "this is ali push cordova plugin",
   "cordova": {
     "id": "cordova-plugin-aliyun-push",
@@ -11,7 +11,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/liuxiaoy/cordova-plugin-aliyun-push.git"
+    "url": "git+https://github.com/nerverwind/CORDOVA-PLUGIN-ALIYUN-PUSH-EX.git"
   },
   "keywords": [
     "ecosystem:cordova",
@@ -20,13 +20,13 @@
     "aliyun",
     "push"
   ],
-  "author": "liuxiaoy",
+  "author": "wuzhongxin",
   "deprecated": false,
   "license": "Apache-2.0",
   "bugs": {
-    "url": "https://github.com/liuxiaoy/cordova-plugin-aliyun-push/issues"
+    "url": "https://github.com/nerverwind/CORDOVA-PLUGIN-ALIYUN-PUSH-EX/issues"
   },
-  "homepage": "https://github.com/liuxiaoy/cordova-plugin-aliyun-push",
+  "homepage": "https://github.com/nerverwind/CORDOVA-PLUGIN-ALIYUN-PUSH-EX",
   "dependencies": {
     "shelljs": "0.5.3"
   },

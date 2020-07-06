@@ -145,7 +145,13 @@ cordova plugin add cordova-plugin-aliyun-push --variable APP_KEY=appkey --variab
 
 	unbindPhoneNumber: function (success, error)
 
-## 感谢
+## 感谢及修正
 
-此项目继承自项目：https://github.com/llwwbb/cordova-plugin-AliPush
-此项目参照的互联网上若干项目
+此项目继承自项目：https://github.com/liuxiaoy/cordova-plugin-aliyun-push
+
+升级了IOS阿里云基础库
+修改了IOS Cordova执行函数插件无响应的问题
+
+## 注意
+
+由于手头项目比较紧急，基本套用了liuxiaoy的代码，只对关键问题进行了调整
