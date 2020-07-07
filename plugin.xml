@@ -102,7 +102,7 @@
                 <intent-filter android:priority="-500">
                     <action android:name="com.google.firebase.MESSAGING_EVENT" />
                 </intent-filter>
-            </service>
+            </service>        
         </config-file>
         <framework src="push.gradle" custom="true" type="gradleReference" />
         <source-file src="src/android/com/blanktrack/alipush/AliPushPlugin.java" target-dir="src/com/blanktrack/alipush/" />
