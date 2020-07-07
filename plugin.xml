@@ -70,6 +70,7 @@
         <config-file target="AndroidManifest.xml" parent="/manifest/application">
             <meta-data android:name="com.alibaba.app.appkey" android:value="$APP_KEY" />
             <meta-data android:name="com.alibaba.app.appsecret" android:value="$APP_SECRET" />
+            <meta-dataandroid:name="com.huawei.hms.client.appid" android:value="null" />
             <receiver android:name="com.blanktrack.alipush.MyMessageReceiver" android:exported="false">
                 <!-- 为保证receiver安全，建议设置不可导出，如需对其他应用开放可通过android：permission进行限制 -->
                 <intent-filter>
