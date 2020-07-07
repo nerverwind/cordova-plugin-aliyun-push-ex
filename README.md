@@ -6,7 +6,7 @@
 
 `APP_KEY和APP_SECRET必须存在`
 
-ionic cordova plugin add https://github.com/nerverwind/cordova-plugin-aliyun-push-ex.git --variable APP_KEY=android_key --variable APP_SECRET=android_secret --variable MIID=null --variable MIKEY=null --variable GCMSENDID=null --variable GCMAPPID=null --variable IOS_APP_KEY=ios_key --variable IOS_APP_SECRET=ios_secret
+cordova plugin add https://github.com/nerverwind/cordova-plugin-aliyun-push-ex.git --variable APP_KEY=android_key --variable APP_SECRET=android_secret --variable MIID=null --variable MIKEY=null --variable GCMSENDID=null --variable GCMAPPID=null --variable IOS_APP_KEY=ios_key --variable IOS_APP_SECRET=ios_secret
 
 ## 辅助弹窗
 
