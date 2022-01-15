@@ -28,7 +28,7 @@
   },
   "homepage": "https://github.com/nerverwind/cordova-plugin-aliyun-push-ex",
   "dependencies": {
-    "shelljs": "0.5.3"
+    "shelljs": "0.8.5"
   },
   "engines": [
     {
